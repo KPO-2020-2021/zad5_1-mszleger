@@ -38,10 +38,22 @@ find_lto(CXX)
 #                         Locate files (change as needed).
 # --------------------------------------------------------------------------------
 set(SOURCES          # All .cpp files in src/
-    src/example.cpp
+    src/Bryla_Geometryczna.cpp
+    src/Dron.cpp
+    src/Graniastoslup6.cpp
+    src/lacze_do_gnuplota
+    src/Macierz.cpp
+    src/Macierz3x3.cpp
+    src/MacierzObrotu.cpp
+    src/Prostopadloscian.cpp
+    src/Scena.cpp
+    src/Wektor.cpp
+    src/Wektor3D.cpp
 )
 set(TESTFILES        # All .cpp files in tests/
-    tests/main.cpp
+    Macierz.cpp
+    MacierzObrotu.cpp
+    Wektor.cpp
 )
 set(LIBRARY_NAME engine)  # Default name for the library built from src/*.cpp (change if you wish)
 
