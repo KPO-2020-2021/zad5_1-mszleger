@@ -34,3 +34,10 @@
 
 # Build directory
 build/
+
+# Unit tests library
+tests/bin
+tests/doctest
+
+# Visual studio code config files
+.vscode
