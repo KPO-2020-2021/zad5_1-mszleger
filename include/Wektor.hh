@@ -143,6 +143,17 @@ class Wektor {
     }
 
     /**
+     * \brief Przeciążenie operatora mnożenia wektora razy skalar
+     */
+    Wektor <rozmiar_wektora, typ_wartosci> operator * (const double skladnik) const
+    {
+      Wektor <rozmiar_wektora, typ_wartosci> wynik;
+      for(unsigned int x = 0; x < rozmiar_wektora; ++x)
+        wynik[x] = this->wartosci[x] * skladnik;
+      return wynik;
+    }
+
+    /**
      * \brief Przeciążenie operatora porównującego ze sobą dwa wektory
      * 
      * Jeśli wszystkie wartości obu wektorów są sobie parami równe zwracana jest wartość true, w przeciwnym razie zwracana jest wartość false.
