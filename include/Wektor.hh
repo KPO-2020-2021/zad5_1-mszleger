@@ -44,7 +44,17 @@ class Wektor {
     typ_wartosci wartosci[rozmiar_wektora];
   
   public:
-    
+
+    /**
+     * Zmienna przechowywująca ilość stworzonych obiektów typu Wektor
+     */
+//    static int iloscStworzonych;
+
+    /**
+     * Zmienna przechowywująca ilość obecnie istniejących obiektów typu Wektor
+     */
+//    static int iloscIstniejacych;
+
     /**
      * \brief Konstruktor bezarguemtowy
      * 
@@ -52,6 +62,8 @@ class Wektor {
      */
     Wektor()
     {
+//      iloscIstniejacych += 1;                        // Zliczanie nowo stworzonego obiektu
+//      iloscStworzonych += 1;
       for(typ_wartosci &wartosc : wartosci)                // Ustawianie wszystkich wartości przechowywanych przez wektor na 0
         wartosc = 0;
     }
@@ -63,8 +75,29 @@ class Wektor {
      */
     Wektor(typ_wartosci wartosciPoczatkowe[rozmiar_wektora])
     {
+//      iloscIstniejacych += 1;                        // Zliczanie nowo stworzonego obiektu
+//      iloscStworzonych += 1;
       for(unsigned int numerWartosci = 0; numerWartosci < rozmiar_wektora; ++numerWartosci)
         wartosci[numerWartosci] = wartosciPoczatkowe[numerWartosci];
+    }
+
+    /**
+     * \brief Konstruktor kopiujący
+     */
+    Wektor(const Wektor <rozmiar_wektora, typ_wartosci> &wektor)
+    {
+//      iloscIstniejacych += 1;                        // Zliczanie nowo stworzonego obiektu
+//      iloscStworzonych += 1;
+      for(unsigned int x = 0; x < rozmiar_wektora; ++x)
+        this->wartosci[x] = wektor.wartosci[x];
+    }
+
+    /**
+     * \brief Destruktor klasy Wektor
+     */
+    ~Wektor()
+    {
+//      iloscIstniejacych -= 1;
     }
 
     /**

@@ -20,6 +20,11 @@ option(ENABLE_LTO "Enable link time optimization" ON)
 option(ENABLE_DOCTESTS "Include tests in the library. Setting this to OFF will remove all doctest related code.
                         Tests in tests/*.cpp will still be enabled." ON)
 
+# Add support for multithreating
+#set(THREADS_PREFER_PTHREAD_FLAG ON)
+#find_package(Threads REQUIRED)
+#target_link_libraries(${EXECUTABLE} PRIVATE Threads::Threads)
+
 # Include stuff. No change needed.
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 include(ConfigSafeGuards)
@@ -71,7 +76,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC doctest)
 
 # Set the compile options you want (change as needed).
 target_set_warnings(${LIBRARY_NAME} ENABLE ALL AS_ERROR ALL DISABLE Annoying)
-# target_compile_options(${LIBRARY_NAME} ... )  # For setting manually.
+
 
 # Add an executable for the file app/main.cpp.
 # If you add more executables, copy these lines accordingly.
