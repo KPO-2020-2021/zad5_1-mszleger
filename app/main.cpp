@@ -17,12 +17,12 @@ void wyswietlMenu()
 
 /**
  * \brief Metoda wyświetlająca informację o ilości stworzonych i obecnie istniejących obiektów typu Wektor
- *//*
-static void PokazRaport()
+ */
+void PokazRaport()
 {
-//  std::cout << "Aktualna ilosc obiektow Wektor3D: " << iloscIstniejacych << std::endl;
-//  std::cout << "  Laczna ilosc obiektow Wektor3D: " << iloscStworzonych << std::endl;
-}*/
+  std::cout << "Aktualna ilosc obiektow Wektor3D: " << Wektor3D::iloscIstniejacych << std::endl;
+  std::cout << "  Laczna ilosc obiektow Wektor3D: " << Wektor3D::iloscStworzonych << std::endl;
+}
 
 int main()
 {
@@ -30,6 +30,7 @@ int main()
   scena.wyswietl();
   Ruch nowyRuch;
   char wybor;
+  Wektor3D wektorPrzesuniecia;
   int numerAktywnegoDrona = 0;
 
   wyswietlMenu();
@@ -40,11 +41,14 @@ int main()
     std::cout << "Polozenie Drona aktywnego (x,y): ";
     scena.gdzieDron(numerAktywnegoDrona);
     std::cout << std::endl << std::endl;
+    PokazRaport();
+    std::cout << std::endl << std::endl;
     std::cout << "Twoj wybor, m - menu > ";
     std::cin >> wybor;
+
     switch (wybor)
     {
-    case 'a':
+    case 'a': /* Wybór aktywnego drona */
       std::cout << std::endl << "Wybor aktywnego drona" << std::endl << std::endl;
       for(int numerDrona = 0; numerDrona < static_cast<int>(scena.drony.size()); ++numerDrona)
       {
@@ -59,37 +63,29 @@ int main()
       --numerAktywnegoDrona;
       std::cout << std::endl;
       break;
-    case 'p':
+    case 'p': /* Zadanie przelotu drona */
       std::cout << "Podaj kierunek lotu (kat w stopniach) > ";
       std::cin >> nowyRuch.katObrotu;
       std::cout << "                   Podaj długość lotu > ";
       std::cin >> nowyRuch.odleglosc;
-      scena.drony[numerAktywnegoDrona].dodajPrzelot(nowyRuch.katObrotu, nowyRuch.odleglosc);
+      scena.drony[numerAktywnegoDrona]->dodajPrzelot(nowyRuch.katObrotu, nowyRuch.odleglosc);
       std::cout << "Rysuje zaplanowana sciezke lotu ..." << std::endl;
       std::cout << "Realizacja przelotu ..." << std::endl;
       scena.animuj();
       std::cout << "Dron wyladowal ..." << std::endl;
       break;
-    case 'z':
-      scena.drony[numerAktywnegoDrona].wykonajPrzelotZwiadowczy();
-      std::cout << "Rysuje zaplanowana sciezke lotu ..." << std::endl;
-      std::cout << "Realizacja przelotu ..." << std::endl;
-      scena.animuj();
-      std::cout << "Dron wyladowal ..." << std::endl;
+    case 'z': /* Wykonanie przelotu zwiadowczego */
+
       break;
-    case 'm':
+    case 'm': /* Wyświetlenie menu */
       wyswietlMenu();
       break;
-    case 'k':
+    case 'k': /* Zakończenie pracy programu */
       return 0;
       break;
-    
     default:
       std::cout << "Podano niewłaściwą opcję" << std::endl;
       break;
     }
   }
-
-
-
 }

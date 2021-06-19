@@ -26,6 +26,16 @@ class Prostopadloscian : public Bryla_Geometryczna{
      * \brief Wczytuje wierzchołki prostopadłościanu z pliku i ustawia kontener przechowujący konfiguracje wierzchołków tworzących poszczególne klasy.
      */
     bool wczytajBryleWzorcowa();
+
+    /**
+     * Metoda wirtualna wyświetlająca nazwę klasy
+     */
+    virtual void wyswietlNazwe() const override;
+
+    /**
+     * Metoda wirtualna deformująca prostopadłościan w taki sposób, aby powstał prostopadłościan
+     */
+    virtual void deformuj() override;
 };
 
 #endif
