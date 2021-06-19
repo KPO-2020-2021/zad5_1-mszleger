@@ -253,3 +253,42 @@ void Dron::animujRotory(double fps)
     kierunek *= -1;
   }
 }
+
+void Dron::przelotZwiadowczy()
+{
+  Ruch nowyRuch;
+  Wektor3D wzniesienie;
+  Wektor3D ladowanie;
+  double katPoczatkowy = this->obrotLokalny;
+  wzniesienie[2] = 100;
+  ladowanie[2] = -100;
+  this->sciezka->dodajWektor(this->przesuniecieGlobalne, wzniesienie);         // Tworzenie ścieżki reprezentującej wznoszenie się drona
+  // Dodawanie przelotu do obręczy z środka okręgu
+  nowyRuch.katObrotu = 0;
+  nowyRuch.odleglosc = 50;
+  this-> dodajRuch(nowyRuch, katPoczatkowy);
+  // Obrót drona o 90 stopni
+  nowyRuch.katObrotu = 90;
+  nowyRuch.odleglosc = 10;
+  this-> dodajRuch(nowyRuch, katPoczatkowy);
+  // Zadanie wykonania ruchu po obręczy
+  nowyRuch.katObrotu = 10;
+  nowyRuch.odleglosc = 10;
+  for(int x = 0; x < 35; ++x)
+    this-> dodajRuch(nowyRuch, katPoczatkowy + 90 + x*10);
+  // Wykonywanie powrotu do pierwotnego miejsca drona
+  nowyRuch.katObrotu = 90;
+  nowyRuch.odleglosc = 50;
+  this-> dodajRuch(nowyRuch, katPoczatkowy + 90);
+  nowyRuch.katObrotu = 180;
+  nowyRuch.odleglosc = 0;
+  this-> dodajRuch(nowyRuch, katPoczatkowy - 180);
+  this->sciezka->dodajWektor(this->przesuniecieGlobalne, ladowanie);           // Tworzenie ścieżki reprezentującej lądowanie drona
+}
+
+void Dron::dodajRuch(Ruch ruch, double katPoczatkowy)
+{
+  this->zaplanowaneRuchy.push_back(ruch);                          // Dodawanie ruchu na koniec listy zaplanowanych ruchów
+  ruch.katObrotu += katPoczatkowy;                            // Dodawanie do kąta obrotu ścieżki kąt obrotu lokalnego drona
+  this->sciezka->dodajRuch(this->przesuniecieGlobalne, ruch);      // Tworzenie ścieżki reprezentującej przelot drona
+}

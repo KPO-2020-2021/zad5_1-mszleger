@@ -151,6 +151,16 @@ class Dron {
      * Metoda animująca obrót rotorów podczas przemieszczania się drona
      */
     void animujRotory(double fps);
+
+    /**
+     * Metoda zadaje dronowi wykonanie przelotu zwiadowczego
+     */
+    void przelotZwiadowczy();
+
+    /**
+     * Metoda zadaje dronowi dany ruch do wykonania i dodaje ruch do rysowanej ścieżki
+     */
+    void dodajRuch(Ruch ruch, double katPoczatkowy);
 };
 
 #endif

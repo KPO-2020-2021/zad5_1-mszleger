@@ -75,7 +75,11 @@ int main()
       std::cout << "Dron wyladowal ..." << std::endl;
       break;
     case 'z': /* Wykonanie przelotu zwiadowczego */
-
+      scena.drony[numerAktywnegoDrona]->przelotZwiadowczy();
+      std::cout << "Rysuje zaplanowana sciezke lotu ..." << std::endl;
+      std::cout << "Realizacja przelotu ..." << std::endl;
+      scena.animuj();
+      std::cout << "Dron wyladowal ..." << std::endl;
       break;
     case 'm': /* Wyświetlenie menu */
       wyswietlMenu();
